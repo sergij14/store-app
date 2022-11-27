@@ -1,4 +1,10 @@
-import { excludedFields, TRUE } from "../constants";
+import {
+  excludedFields,
+  NUM_FILTER_REGEX,
+  NUM_FILTER_SEPARATOR,
+  operatorsMap,
+  TRUE,
+} from "../constants";
 
 export class API {
   constructor(public query, private queryObj) {}
@@ -8,13 +14,33 @@ export class API {
 
     excludedFields.forEach((el) => delete queryObjectToPass[el]);
 
-    const { name, featured } = queryObjectToPass;
+    const { name, featured, numericFilters } = queryObjectToPass;
 
     if (featured) {
       queryObjectToPass.featured = featured === TRUE ? true : false;
     }
+
     if (name) {
       queryObjectToPass.name = { $regex: name, $options: "i" };
+    }
+
+    if (numericFilters) {
+      const numFilters = numericFilters;
+      const options = ["price", "rating"];
+
+      let filters = numFilters.replace(
+        NUM_FILTER_REGEX,
+        (match) =>
+          `${NUM_FILTER_SEPARATOR + operatorsMap[match] + NUM_FILTER_SEPARATOR}`
+      );
+
+      filters = filters.split(",").forEach((item) => {
+        const [field, operator, value] = item.split(NUM_FILTER_SEPARATOR);
+
+        if (options.includes(field)) {
+          queryObjectToPass[field] = { [operator]: value * 1 };
+        }
+      });
     }
 
     this.query = this.query.find(queryObjectToPass);
