@@ -1,9 +1,9 @@
 import { ProductsQueryParams } from './product-schema';
-import { API } from "../../utils/API";
 import { Product, ProductModel } from "./product-model";
+import { ProductAPI } from './product-api';
 
 export async function getAllProducts(reqQuery: ProductsQueryParams): Promise<Product[]> {
-  const features = new API(ProductModel.find(), reqQuery)
+  const features = new ProductAPI(ProductModel.find(), reqQuery)
     .filter()
     .sort()
     .limitFields()

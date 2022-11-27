@@ -1,12 +1,12 @@
-import { ProductsQueryParams } from "./../modules/product/product-schema";
+import { ProductsQueryParams } from "./product-schema";
 import {
   excludedFields,
   NUM_FILTER_REGEX,
   NUM_FILTER_SEPARATOR,
   operatorsMap,
-} from "../constants";
+} from "../../constants";
 
-export class API {
+export class ProductAPI {
   constructor(public query, private queryObj: ProductsQueryParams) {}
 
   filter() {
