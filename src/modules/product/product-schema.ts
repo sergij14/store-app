@@ -16,7 +16,8 @@ const products = Type.Array(product);
 
 export const getAllProductsSchema = {
   tags: ["product"],
-  description: "Returns all prodcuts",
+  description:
+    "Returns all prodcuts \n Examples: \n \n name=chair \n limit=15 \n page=1 \n featured=true \n sort=price \n fields=name,price \n numericFilters=price>40,rating>=2",
   query: Type.Partial(
     Type.Object({
       name: Type.String(),
