@@ -42,4 +42,14 @@ export class API {
 
     return this;
   }
+
+  paginate() {
+    const page = this.queryObj.page * 1 || 1;
+    const limit = this.queryObj.limit * 1 || 10;
+    const skip = (page - 1) * limit;
+
+    this.query = this.query.skip(skip).limit(limit);
+
+    return this;
+  }
 }
