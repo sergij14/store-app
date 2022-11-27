@@ -1,7 +1,7 @@
 import fastify from "fastify";
 import swagger from "@fastify/swagger";
-import { todoRoute } from "../modules/todo/todo-route";
 import { version } from "../../package.json";
+import { productsRoute } from "../modules/products-route";
 
 export async function createServer() {
   const app = fastify();
@@ -23,7 +23,7 @@ export async function createServer() {
     staticCSP: true,
     exposeRoute: true,
   });
-  app.register(todoRoute, { prefix: "/api/v1/products" });
+  app.register(productsRoute, { prefix: "/api/v1/products" });
 
   return app;
 }
