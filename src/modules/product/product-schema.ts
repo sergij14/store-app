@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Static, Type } from "@sinclair/typebox";
 
 const product = Type.Object({
   name: Type.String(),
@@ -19,3 +19,5 @@ export const getAllProductsSchema = {
     200: products,
   },
 };
+
+export type ProductBody = Static<typeof product>
