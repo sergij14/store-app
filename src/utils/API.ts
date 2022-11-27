@@ -16,6 +16,7 @@ export class API {
 
     const { name, featured, numericFilters } = queryObjectToPass;
 
+    // example: /products?featured=true
     if (featured) {
       queryObjectToPass.featured = featured === TRUE ? true : false;
     }
@@ -24,6 +25,7 @@ export class API {
       queryObjectToPass.name = { $regex: name, $options: "i" };
     }
 
+    // example: /products?numericFilters=price>40,rating>=2
     if (numericFilters) {
       const numFilters = numericFilters;
       const options = ["price", "rating"];
@@ -49,6 +51,7 @@ export class API {
   }
 
   limitFields() {
+    // example: /products?fields=name,price
     if (this.queryObj.fields) {
       const fields = this.queryObj.fields.split(",").join(" ");
       this.query = this.query.select(fields);
@@ -58,6 +61,7 @@ export class API {
   }
 
   sort() {
+    // example: /products?sort=price
     if (this.queryObj.sort) {
       const sortBy = this.queryObj.sort.split(",").join(" ");
       console.log(sortBy);
@@ -70,6 +74,7 @@ export class API {
   }
 
   paginate() {
+    // example: /products?limit=15
     const page = this.queryObj.page * 1 || 1;
     const limit = this.queryObj.limit * 1 || 10;
     const skip = (page - 1) * limit;
