@@ -1,24 +1,13 @@
 import { logger } from "./../../utils/logger";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { getAllProducts } from "./product-service";
-import { TRUE } from "../../constants";
 
 export async function getAllProductsHandler(
   req: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { featured, name } = req.query as any;
-
-    const queryObj = {} as any;
-
-    if (featured) {
-      queryObj.featured = featured === TRUE ? true : false;
-    }
-    if (name) {
-      queryObj.name = { $regex: name, $options: "i" };
-    }
-    const products = await getAllProducts(queryObj);
+    const products = await getAllProducts(req.query);
     return reply.code(200).send(products);
   } catch (err) {
     logger.error(err, "getAllProducts: Error getting products");

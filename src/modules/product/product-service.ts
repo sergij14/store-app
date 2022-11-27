@@ -1,5 +1,8 @@
+import { API } from "../../utils/API";
 import { Product, ProductModel } from "./product-model";
 
-export async function getAllProducts(queryObj: any): Promise<Product[]> {
-    return ProductModel.find(queryObj);
+export async function getAllProducts(reqQuery: any): Promise<Product[]> {
+    const features = new API(ProductModel.find(), reqQuery).filter();
+    const products = await features.query;
+    return products
   }
