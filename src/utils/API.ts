@@ -1,11 +1,11 @@
-import { TRUE } from "../constants";
+import { excludedFields, TRUE } from "../constants";
 
 export class API {
   constructor(public query, private queryObj) {}
 
   filter() {
     const queryObjectToPass = { ...this.queryObj };
-    const excludedFields = ["page", "sort"];
+
     excludedFields.forEach((el) => delete queryObjectToPass[el]);
 
     const { name, featured } = queryObjectToPass;
@@ -18,6 +18,15 @@ export class API {
     }
 
     this.query = this.query.find(queryObjectToPass);
+
+    return this;
+  }
+
+  limitFields() {
+    if (this.queryObj.fields) {
+      const fields = this.queryObj.fields.split(",").join(" ");
+      this.query = this.query.select(fields);
+    }
 
     return this;
   }
