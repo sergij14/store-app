@@ -19,5 +19,3 @@ export const getAllProductsSchema = {
     200: products,
   },
 };
-
-export type ProductBody = Static<typeof product>

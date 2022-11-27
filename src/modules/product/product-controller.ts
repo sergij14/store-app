@@ -8,12 +8,15 @@ export async function getAllProductsHandler(
   reply: FastifyReply
 ) {
   try {
-    const { featured } = req.query as any;
+    const { featured, name } = req.query as any;
 
     const queryObj = {} as any;
 
     if (featured) {
       queryObj.featured = featured === TRUE ? true : false;
+    }
+    if (name) {
+      queryObj.name = { $regex: name, $options: "i" };
     }
     const products = await getAllProducts(queryObj);
     return reply.code(200).send(products);
