@@ -1,13 +1,13 @@
+import { ProductsQueryParams } from "./../modules/product/product-schema";
 import {
   excludedFields,
   NUM_FILTER_REGEX,
   NUM_FILTER_SEPARATOR,
   operatorsMap,
-  TRUE,
 } from "../constants";
 
 export class API {
-  constructor(public query, private queryObj) {}
+  constructor(public query, private queryObj: ProductsQueryParams) {}
 
   filter() {
     const queryObjectToPass = { ...this.queryObj };
@@ -18,11 +18,11 @@ export class API {
 
     // example: /products?featured=true
     if (featured) {
-      queryObjectToPass.featured = featured === TRUE ? true : false;
+      queryObjectToPass.featured = featured;
     }
 
     if (name) {
-      queryObjectToPass.name = { $regex: name, $options: "i" };
+      queryObjectToPass.name = { $regex: name.toString(), $options: "i" };
     }
 
     // example: /products?numericFilters=price>40,rating>=2
@@ -36,11 +36,11 @@ export class API {
           `${NUM_FILTER_SEPARATOR + operatorsMap[match] + NUM_FILTER_SEPARATOR}`
       );
 
-      filters = filters.split(",").forEach((item) => {
+      filters.split(",").forEach((item) => {
         const [field, operator, value] = item.split(NUM_FILTER_SEPARATOR);
 
         if (options.includes(field)) {
-          queryObjectToPass[field] = { [operator]: value * 1 };
+          queryObjectToPass[field] = { [operator]: +value * 1 };
         }
       });
     }
@@ -75,8 +75,8 @@ export class API {
 
   paginate() {
     // example: /products?limit=15
-    const page = this.queryObj.page * 1 || 1;
-    const limit = this.queryObj.limit * 1 || 10;
+    const page = (this.queryObj.page && +this.queryObj.page) || 1;
+    const limit = (this.queryObj.limit && +this.queryObj.limit) || 10;
     const skip = (page - 1) * limit;
 
     this.query = this.query.skip(skip).limit(limit);

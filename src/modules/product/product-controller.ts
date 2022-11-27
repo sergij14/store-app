@@ -1,9 +1,10 @@
 import { logger } from "./../../utils/logger";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { getAllProducts } from "./product-service";
+import { ProductsQueryParams } from "./product-schema";
 
 export async function getAllProductsHandler(
-  req: FastifyRequest,
+  req: FastifyRequest<{Querystring: ProductsQueryParams}>,
   reply: FastifyReply
 ) {
   try {
