@@ -1,7 +1,7 @@
 import fastify from "fastify";
 import swagger from "@fastify/swagger";
 import { version } from "../../package.json";
-import { productsRoute } from "../modules/products-route";
+import { productRoute } from "../modules/product/product-route";
 
 export async function createServer() {
   const app = fastify();
@@ -11,7 +11,7 @@ export async function createServer() {
     swagger: {
       tags: [
         {
-          name: "products",
+          name: "product",
         },
       ],
       info: {
@@ -23,7 +23,7 @@ export async function createServer() {
     staticCSP: true,
     exposeRoute: true,
   });
-  app.register(productsRoute, { prefix: "/api/v1/products" });
+  app.register(productRoute, { prefix: "/api/v1/products" });
 
   return app;
 }

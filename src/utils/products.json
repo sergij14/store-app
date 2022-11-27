@@ -1,0 +1,108 @@
+[
+  {
+    "name": "accent chair",
+    "price": 25,
+    "rating": 4
+  },
+  {
+    "name": "albany sectional",
+    "price": 109,
+    "rating": 5
+  },
+  {
+    "name": "albany table",
+    "price": 309,
+    "rating": 4.9
+  },
+  {
+    "name": "armchair",
+    "price": 125,
+    "rating": 4.8
+  },
+  {
+    "name": "bar stool",
+    "price": 40,
+    "rating": 4.6
+  },
+  {
+    "name": "dining table",
+    "price": 42,
+    "rating": 4.55
+  },
+  {
+    "name": "emperor bed",
+    "price": 23
+  },
+  {
+    "name": "entertainment center",
+    "price": 59,
+    "featured": true
+  },
+  {
+    "name": "high-back bench",
+    "price": 39,
+    "featured": true
+  },
+
+  {
+    "name": "leather sofa",
+    "price": 99
+  },
+  {
+    "name": "modern bookshelf",
+    "price": 31,
+    "featured": true
+  },
+  {
+    "name": "modern poster",
+    "price": 30
+  },
+  {
+    "name": "shelf",
+    "price": 30
+  },
+  {
+    "name": "simple chair",
+    "price": 109
+  },
+  {
+    "name": "sofa set",
+    "price": 129
+  },
+  {
+    "name": "suede armchair",
+    "price": 15
+  },
+  {
+    "name": "utopia sofa",
+    "price": 79,
+    "featured": true
+  },
+  {
+    "name": "vase table",
+    "price": 120,
+    "featured": true
+  },
+  {
+    "name": "wooden bed",
+    "price": 25
+  },
+  {
+    "name": "wooden desk",
+    "price": 15
+  },
+  {
+    "name": "wooden desk",
+    "price": 40
+  },
+  {
+    "name": "wooden table",
+    "price": 23,
+    "featured": true
+  },
+  {
+    "name": "a first wooden table",
+    "price": 23,
+    "featured": true
+  }
+]
