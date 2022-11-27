@@ -25,10 +25,8 @@ export class API {
     }
 
     if (numericFilters) {
-      const numFilters = numericFilters;
       const options = ["price", "rating"];
-
-      let filters = numFilters.replace(
+      const filters = numericFilters.replace(
         NUM_FILTER_REGEX,
         (match) =>
           `${NUM_FILTER_SEPARATOR + operatorsMap[match] + NUM_FILTER_SEPARATOR}`
